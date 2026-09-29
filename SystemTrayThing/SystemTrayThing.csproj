@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="icons\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ManagedNativeWifi" Version="3.0.2" />
+      <PackageReference Include="System.IO.Ports" Version="8.0.0" />
+      <PackageReference Include="System.Management" Version="11.0.0-rc.1.26425.128" />
+    </ItemGroup>
+
+</Project>
