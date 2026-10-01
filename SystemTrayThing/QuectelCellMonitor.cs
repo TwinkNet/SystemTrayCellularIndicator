@@ -349,6 +349,7 @@ public class QuectelCellMonitor : IDisposable
     }
 
     public static bool ActivelyScanningOperator => activelyScanningOperator;
+    public static bool ActivelySwitchingOperator => activelySwitchingOperator;
 
     public string LastKnownOperator => _lastKnownOperator;
 

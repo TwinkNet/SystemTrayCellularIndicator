@@ -91,10 +91,10 @@ namespace NetworkTrayMonitor
             {
                 try
                 {
-                    if (!NetworkInterface.GetIsNetworkAvailable())
-                    {
-                        return new NetworkTechnology(_currentNetworkTechnology, "X", "Disconnected");
-                    }
+                    // if (!NetworkInterface.GetIsNetworkAvailable())
+                    // {
+                    //     return new NetworkTechnology(_currentNetworkTechnology, "X", "Disconnected");
+                    // }
 
                     NetworkInterface[] interfaces = NetworkInterface.GetAllNetworkInterfaces();
                     // Ethernet
@@ -137,7 +137,8 @@ namespace NetworkTrayMonitor
 
                     if (connectionProfile == null ||
                         connectionProfile.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.None
-                        || QuectelCellMonitor.ActivelyScanningOperator)
+                        || QuectelCellMonitor.ActivelyScanningOperator
+                        || QuectelCellMonitor.ActivelySwitchingOperator)
                     {
                         return new NetworkTechnology(_currentNetworkTechnology, "ANT", "Searching...");
                     }
@@ -209,7 +210,7 @@ namespace NetworkTrayMonitor
                     //
                 }
 
-                return new NetworkTechnology(_currentNetworkTechnology, "X", "Errored");
+                return new NetworkTechnology(_currentNetworkTechnology, "X", "Not Connected");
             });
         }
 
