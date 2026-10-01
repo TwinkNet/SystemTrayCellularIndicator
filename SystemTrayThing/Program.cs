@@ -24,6 +24,7 @@ namespace NetworkTrayMonitor
         private readonly NotifyIcon _trayIcon;
         private NetworkTechnology _currentNetworkTechnology = new("X", "Disabled");
         private AnimationTracker _animationTracker = new AnimationTracker();
+        private int _noCellularConnCounter = 0;
         private readonly Timer _timer;
         private readonly QuectelCellMonitor _cellMonitor = new QuectelCellMonitor();
         private readonly ToolStripMenuItem _operatorsMenu;
@@ -103,6 +104,7 @@ namespace NetworkTrayMonitor
                         if (ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet &&
                             ni.OperationalStatus == OperationalStatus.Up)
                         {
+                            resetNoCellularConnCounter();
                             return new NetworkTechnology(_currentNetworkTechnology, "ETH", "Ethernet");
                         }
                     }
@@ -122,7 +124,7 @@ namespace NetworkTrayMonitor
                                 if (khz > 5000000) band = "5.0";
                                 else band = "2.4";
                             }
-
+                            resetNoCellularConnCounter();
                             return new NetworkTechnology(_currentNetworkTechnology, band, "Wi-Fi\n" + band + " GHz");
                         }
                     }
@@ -140,9 +142,14 @@ namespace NetworkTrayMonitor
                         || QuectelCellMonitor.ActivelyScanningOperator
                         || QuectelCellMonitor.ActivelySwitchingOperator)
                     {
+                        if (_noCellularConnCounter > 60)
+                        {
+                            return new NetworkTechnology(_currentNetworkTechnology, "X", "Not Connected");
+                        }
+                        _noCellularConnCounter++;
                         return new NetworkTechnology(_currentNetworkTechnology, "ANT", "Searching...");
                     }
-
+                    resetNoCellularConnCounter();
                     long bytesReceived = 0;
                     long bytesSent = 0;
                     foreach (var ni in interfaces)
@@ -201,7 +208,6 @@ namespace NetworkTrayMonitor
                                 provider + "\n4G LTE" + capabilitySuffix);
                         }
                     }
-
                     return new NetworkTechnology(_currentNetworkTechnology, "H" + animationSuffix,
                         provider + "\n3G HSPA"); // RM520NGL doesn't support anything older than 3G UMTS or HSPA
                 }
@@ -212,6 +218,11 @@ namespace NetworkTrayMonitor
 
                 return new NetworkTechnology(_currentNetworkTechnology, "X", "Not Connected");
             });
+        }
+
+        private void resetNoCellularConnCounter()
+        {
+            _noCellularConnCounter = 0;
         }
 
         private void Exit(object sender, EventArgs e)
