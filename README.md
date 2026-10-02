@@ -6,8 +6,11 @@ There's probably a lot of poor programming practices used in here. This is mostl
 thing that I didn't put a lot of effort into. "It works on my machine", but it might require modifications to work on yours.
 
 ### Screenshots
+![Active Data Transmission](Indicator_Screenies/ACTIVE.gif)
+
 ![LTE+](Indicator_Screenies/LTE+.PNG)
+![NR](Indicator_Screenies/NR.PNG)
 ![Wi-Fi 2.4 Ghz](Indicator_Screenies/2.4ghz.PNG)
 ![Wi-Fi 5.0 Ghz](Indicator_Screenies/5.0ghz.PNG)
 
-I'll add some more screenshots in a bit here I don't have 5G where i'm at.
+![Operator Selection](Indicator_Screenies/SELECT.png)
