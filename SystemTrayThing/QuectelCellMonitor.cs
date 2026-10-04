@@ -87,7 +87,7 @@ public class QuectelCellMonitor : IDisposable
                 return false;
             }
             _port.DiscardInBuffer();
-            _port.Write("AT+COPS=4,2,\"" + pendingOperatorMccncc + "\"\r");
+            _port.Write("AT+COPS=1,2,\"" + pendingOperatorMccncc + "\"\r");
 
             var responseBuilder = new StringBuilder();
             var startTime = DateTime.UtcNow;

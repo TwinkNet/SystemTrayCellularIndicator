@@ -8,8 +8,9 @@ thing that I didn't put a lot of effort into. "It works on my machine", but it m
 ### Screenshots
 ![Active Data Transmission](Indicator_Screenies/ACTIVE.gif)
 
-![LTE+](Indicator_Screenies/LTE+.PNG)
+![5G+](Indicator_Screenies/5G+.PNG)
 ![NR](Indicator_Screenies/NR.PNG)
+![LTE+](Indicator_Screenies/LTE+.PNG)
 ![Wi-Fi 2.4 Ghz](Indicator_Screenies/2.4ghz.PNG)
 ![Wi-Fi 5.0 Ghz](Indicator_Screenies/5.0ghz.PNG)
 
