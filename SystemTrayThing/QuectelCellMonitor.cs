@@ -289,9 +289,9 @@ public class QuectelCellMonitor : IDisposable
                 return QuectelNetworkState.LTE;
             }
         }
-        catch
+        catch(Exception e)
         {
-            // 
+            Console.WriteLine(e.ToString());
         }
         finally
         {

@@ -22,7 +22,8 @@ public partial class QcaInfo5gSchema
             _bandwidth = int.Parse(parts[2]);
             // Clean quotes and extract just the numeric band value from "NR5G BAND 41"
             string bandString = parts[3].Trim('"');
-            _band = int.Parse(BandRegex().Match(bandString).Value);
+            bandString = bandString.Split(" ")[2];
+            _band = int.Parse(bandString);
             
             _cellId = int.Parse(parts[4]);
         }
@@ -44,6 +45,6 @@ public partial class QcaInfo5gSchema
         return line.Contains("SCC") && line.Contains("NR5G");
     }
 
-    [GeneratedRegex(@"\d+")]
+    [GeneratedRegex(@"NR5G\sBAND\s\d*")]
     private static partial Regex BandRegex();
 }
